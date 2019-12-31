@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 class LoginController extends Controller
 {
     //
-    public function Index()
+    public function index()
     {
         return view('Admin.login');
     }
