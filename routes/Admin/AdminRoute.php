@@ -10,3 +10,5 @@ Route::get('/user',function (){
 //    $user = $user->appends(['sort' => 'notes']);
     return $user;
 });
+
+Router::get();
