@@ -11,4 +11,4 @@ Route::get('/user',function (){
     return $user;
 });
 
-Router::get();
+Route::get('admin/login','Login@Index');
