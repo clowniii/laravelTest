@@ -13,7 +13,7 @@ Route::group(['prefix'=>'admin'],function(){
         return $user;
 
     });
-
+   
     // Route::get('admin/login','admin/LoginController@index');
 });
 
