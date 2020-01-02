@@ -3,8 +3,9 @@
 namespace App\Model\Admin;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User;
 
-class Admin extends Model
+class Admin extends User
 {
     //
 }

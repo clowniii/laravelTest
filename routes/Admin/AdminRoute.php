@@ -11,8 +11,16 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
         return $user;
 
     });
-   
-    // Route::get('admin/login','admin/LoginController@index');
+    /*
+     *登录路由
+     */
+    Route::get('/index','EntryController@index');
     Route::get('/login','EntryController@loginForm');
+    Route::post('/login','EntryController@login');
+
+    /*
+     *后台路由
+     */
+    Route::get('/welcome.html','WelcomeController@index');
 });
 
