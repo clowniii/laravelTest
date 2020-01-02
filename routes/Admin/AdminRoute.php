@@ -1,9 +1,7 @@
 <?php
-Route::group(['prefix'=>'admin'],function(){
+Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('/aaa',function(){
-
         return ['a','b','c'];
-
     });
 
 
@@ -15,5 +13,6 @@ Route::group(['prefix'=>'admin'],function(){
     });
    
     // Route::get('admin/login','admin/LoginController@index');
+    Route::get('/login','EntryController@loginForm');
 });
 
