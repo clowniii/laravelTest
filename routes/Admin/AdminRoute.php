@@ -21,6 +21,6 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     /*
      *后台路由
      */
-    Route::get('/welcome','WelcomeController@index');
+    Route::get('/welcome.html','WelcomeController@index');
 });
 
