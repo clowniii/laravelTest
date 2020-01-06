@@ -27,6 +27,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     /*
      *后台路由
      */
+    //我的桌面
     Route::get('/welcome.html','WelcomeController@index');
+    //模块管理
+    Route::get('/modules.html','ModulesController@index');
+    //栏目管理
+    Route::get('column.html','ColumnController@index');
 });
 
