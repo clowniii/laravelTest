@@ -21,7 +21,7 @@ class EntryController extends Controller
     }
     public function loginForm()
     {
-        return view('admin.entry.login');
+        return view('admin.entry.login',['power'=>'本后台系统由doublek提供技术支持']);
     }
     public function login(Request $request)
     {
@@ -36,5 +36,10 @@ class EntryController extends Controller
         }else {
             return redirect('admin/login')->with('error','用户名或密码错误');
         }
+    }
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        return redirect('admin/login');
     }
 }

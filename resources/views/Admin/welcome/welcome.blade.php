@@ -1,7 +1,7 @@
 ﻿@include('admin.inc.inc_head', ['title' => '我的桌面'])
 <body>
 <div class="page-container">
-	<p class="f-20 text-success">欢迎使用H-ui.admin <span class="f-14">v3.1</span>后台模版！</p>
+	<p class="f-20 text-success">欢迎使用laravel - dk <span class="f-14">v1.0</span>后台模版！</p>
 	<p>登录次数：18 </p>
 	<p>上次登录IP：{{$server}}  上次登录时间：2014-6-14 11:19:55</p>
 	<table class="table table-border table-bordered table-bg">
@@ -169,8 +169,8 @@
 			@if( $power ) {{$power}} @endif</p>
 	</div>
 </footer>
-<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="{{URL::asset('admin/lib/jquery/1.9.1/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('admin/static/h-ui/js/H-ui.min.js')}}"></script>
 
 </body>
 </html>

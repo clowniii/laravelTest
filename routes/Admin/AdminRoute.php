@@ -14,9 +14,15 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     /*
      *登录路由
      */
+    //登录成功
     Route::get('/index','EntryController@index');
+    //登录页面
     Route::get('/login','EntryController@loginForm');
+    //退出登录
+    Route::get('/logout','EntryController@logout');
+    //表单提交
     Route::post('/login','EntryController@login');
+
 
     /*
      *后台路由
