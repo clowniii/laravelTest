@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ModulesController extends Controller
+class ModulesController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -15,11 +15,7 @@ class ModulesController extends Controller
      */
     public function index()
     {
-        // $page = $request->input('page');
-        // $modules = Modules:: where()
         $modules = Modules::orderBy('sort_id','desc')->get();
-//        return $modules;
-        // dd($modules);
         return view('admin.system.modules',['modules'=>$modules]);
     }
 
@@ -41,7 +37,8 @@ class ModulesController extends Controller
      */
     public function create()
     {
-        return view('admin.system.modules_create');
+        $modules= [];
+        return view('admin.system.modules_create',['modules'=>$modules]);
     }
 
     /**
@@ -52,8 +49,17 @@ class ModulesController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->input();
-        dd($data);
+        $data['id'] = $request->input('id');
+        $data['title'] = $request->input('title');
+        $data['controller'] = $request->input('controller');
+        if( $data['id'] )
+        {
+            $res = Modules::where('id',$data['id'])->update($data);
+        } else {
+            unset($data['id']);
+            $res = Modules::insertGetId($data);
+        }
+        dd($res);
     }
 
     /**
@@ -75,7 +81,10 @@ class ModulesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $modules = Modules::where('id',$id)->first();
+
+        return view('admin.system.modules_create',['modules'=>$modules]);
+
     }
 
     /**

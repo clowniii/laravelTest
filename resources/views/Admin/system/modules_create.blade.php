@@ -1,7 +1,8 @@
 @include('admin.inc.inc_head', ['title' => '栏目添加'])
 <body>
 <div class="page-container">
-	<form action="{{URL::asset('index.php/admin/modules')}}" method="post" class="form form-horizontal" id="form-category-add">
+	<form action="{{URL('admin/modules')}}" method="post" class="form form-horizontal" id="form-category-add">
+        <input type="hidden" name="id" value="{{$modules?$modules->id:''}}">
         @csrf
 		<div id="tab-category" class="HuiTab">
 			<div class="tabBar cl">
@@ -11,7 +12,7 @@
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-3">名称：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="" placeholder="" id="" name="title">
+						<input type="text" class="input-text" value="{{$modules?$modules->title:''}}" placeholder="" id="" name="title">
 					</div>
 					<div class="col-3">
 					</div>
@@ -19,7 +20,7 @@
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-3">控制器：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="" placeholder="请先添加控制器和路由" id="" name="controller">
+						<input type="text" class="input-text" value="{{$modules?$modules->controller:''}}" placeholder="请先添加控制器和路由" id="" name="controller">
 					</div>
 					<div class="col-3">
 					</div>
@@ -61,8 +62,10 @@ $(function(){
 		submitHandler:function(form){
 			$(form).ajaxSubmit();
 			var index = parent.layer.getFrameIndex(window.name);
-			//parent.$('.btn-refresh').click();
-			// parent.layer.close(index);
+			// parent.$('.btn-refresh').click();
+            // parent.location.reload();
+
+            // parent.layer.close(index);
 		}
 	});
 });

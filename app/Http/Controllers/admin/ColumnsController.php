@@ -7,7 +7,7 @@ use App\Model\Admin\Modules;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ColumnsController extends Controller
+class ColumnsController extends BaseController
 {
     /**
      * Display a listing of the resource.
@@ -51,7 +51,7 @@ class ColumnsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request->input();
     }
 
     /**

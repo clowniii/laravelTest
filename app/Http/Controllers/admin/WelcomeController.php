@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 
-class WelcomeController extends Controller
+class WelcomeController extends BaseController
 {
     public function index()
     {
@@ -19,7 +19,7 @@ class WelcomeController extends Controller
             'php_version'   => PHP_VERSION,
             'host'          => $_SERVER['HTTP_HOST'],
             'computer_name' => gethostbyaddr($_SERVER ['REMOTE_ADDR']),
-            'yuming'        => $_SERVER['SERVER_NAME'],
+            'domain_name'        => $_SERVER['SERVER_NAME'],
             'language'      => $_SERVER['HTTP_ACCEPT_LANGUAGE'],
             'server_port'   => $_SERVER['SERVER_PORT'],
             'signature'     => $_SERVER['SCRIPT_NAME'],

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 
-class EntryController extends Controller
+class EntryController extends BaseController
 {
     //
     public function __construct()

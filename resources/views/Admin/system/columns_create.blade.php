@@ -1,7 +1,8 @@
 @include('admin.inc.inc_head', ['title' => '栏目添加'])
 <body>
 <div class="page-container">
-	<form action="" method="post" class="form form-horizontal" id="form-category-add">
+	<form action="{{URL('admin/columns')}}" method="post" class="form form-horizontal" id="form-category-add">
+        @csrf
 		<div id="tab-category" class="HuiTab">
 			<div class="tabBar cl">
 				<span>基本设置</span>
@@ -200,10 +201,10 @@ $(function(){
 		focusCleanup:true,
 		success:"valid",
 		submitHandler:function(form){
-			//$(form).ajaxSubmit();
+			$(form).ajaxSubmit();
 			var index = parent.layer.getFrameIndex(window.name);
 			//parent.$('.btn-refresh').click();
-			parent.layer.close(index);
+			// parent.layer.close(index);
 		}
 	});
 });

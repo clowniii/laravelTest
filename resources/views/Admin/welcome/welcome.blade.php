@@ -78,7 +78,7 @@
 			</tr>
 			<tr>
 				<td>服务器域名</td>
-				<td>{{$yuming}}</td>
+				<td>{{$domain_name}}</td>
 			</tr>
 			<tr>
 				<td>服务器端口 </td>

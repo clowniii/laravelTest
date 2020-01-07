@@ -8,14 +8,11 @@
 	<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
 </nav>
 <div class="page-container">
-	<div class="text-c">
-		<input type="text" name="" id="" placeholder="栏目名称、id" style="width:250px" class="input-text">
-		<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
-	</div>
+
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 		<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-		<a class="btn btn-primary radius" onclick="system_category_add('添加资讯','{{URL::asset("index.php/admin/modules/create")}}')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加模块</a>
+		<a class="btn btn-primary radius" onclick="system_category_add('添加模块','{{URL("admin/modules/create")}}')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加模块</a>
 		</span>
 		<span class="r">共有数据：<strong> {{count($modules)}} </strong> 条</span>
 	</div>
@@ -37,8 +34,13 @@
 					<td>{{$v->id}}</td>
 					<td>{{$v->sort_id}}</td>
 					<td class="text-l">{{$v->title}}</td>
-					<td class="f-14"><a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','system-category-add.html','1','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-						<a title="删除" href="javascript:;" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+					<td class="f-14">
+                        <a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','{{URL('admin/modules/'.$v->id.'/edit')}}',{{$v->id}},'700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+						<a title="删除" href="javascript:;" onclick="system_category_del(this,{{URL('admin/modules/'.$v->id.'/edit')}})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+                        <a class="btn-refresh" style="display: none;" href="javascript:;" onclick="javascript:location.replace(location.href);" title="刷新" ></a>
+
+                    </td>
+
 				</tr>
                 @endforeach
 			</tbody>
@@ -69,13 +71,14 @@
     /*系统-栏目-编辑*/
     function system_category_edit(title,url,id,w,h){
         layer_show(title,url,w,h);
+        // location.reload();
     }
     /*系统-栏目-删除*/
-    function system_category_del(obj,id){
+    function system_category_del(obj,uri){
         layer.confirm('确认要删除吗？',function(index){
             $.ajax({
                 type: 'POST',
-                url: '',
+                url: uri,
                 dataType: 'json',
                 success: function(data){
                     $(obj).parents("tr").remove();

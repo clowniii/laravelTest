@@ -25,7 +25,7 @@
 					<ul class="dropDown-menu menu radius box-shadow">
 						<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
 						<li><a href="#">切换账户</a></li>
-						<li><a href="{{URL::asset('admin/logout')}}">退出</a></li>
+						<li><a href="{{URL('admin/logout')}}">退出</a></li>
 				</ul>
 			</li>
 				<li id="Hui-msg"> <a href="#" title="消息"><span class="badge badge-danger">1</span><i class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a> </li>
@@ -124,8 +124,8 @@
 			<dd>
 				<ul>
                     <li><a data-href="system-base.html" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
-                    <li><a data-href="{{URL::asset('index.php/admin/modules')}}" data-title="模块管理" href="javascript:void(0)">模块管理</a></li>
-					<li><a data-href="{{URL::asset('index.php/admin/columns')}}" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
+                    <li><a data-href="{{URL('admin/modules')}}" data-title="模块管理" href="javascript:void(0)">模块管理</a></li>
+					<li><a data-href="{{URL('admin/columns')}}" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
 					<li><a data-href="system-data.html" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>
 					<li><a data-href="system-shielding.html" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li>
 					<li><a data-href="system-log.html" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
