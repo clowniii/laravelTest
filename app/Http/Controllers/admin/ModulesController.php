@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ModulesController extends BaseController
+class ModulesController extends CurdController
 {
     /**
      * Display a listing of the resource.

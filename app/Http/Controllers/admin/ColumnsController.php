@@ -7,7 +7,7 @@ use App\Model\Admin\Modules;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ColumnsController extends BaseController
+class ColumnsController extends CurdController
 {
     /**
      * Display a listing of the resource.

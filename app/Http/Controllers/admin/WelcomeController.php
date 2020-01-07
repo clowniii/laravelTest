@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 
-class WelcomeController extends BaseController
+class WelcomeController extends CurdController
 {
     public function index()
     {

@@ -6,13 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 
-class EntryController extends BaseController
+class EntryController extends CurdController
 {
     //
-    public function __construct()
-    {
-        $this->middleware('admin.auth')->except(['login','loginForm']);
-    }
+
 
     public function index()
     {
