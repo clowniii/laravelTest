@@ -7,5 +7,8 @@ use App\Http\Controllers\Controller;
 
 class CurdController extends BaseController
 {
-    //
+    public function __construct()
+    {
+        parent::__construct();
+    }
 }
