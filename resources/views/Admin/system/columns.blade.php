@@ -15,7 +15,7 @@
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
 		<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-		<a class="btn btn-primary radius" onclick="system_category_add('添加资讯','system-category-add.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加栏目</a>
+		<a class="btn btn-primary radius" onclick="system_category_add('添加资讯','{{URL::asset("index.php/admin/columns/create")}}')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加栏目</a>
 		</span>
 		<span class="r">共有数据：<strong>54</strong> 条</span>
 	</div>
@@ -59,16 +59,12 @@
 		</table>
 	</div>
 </div>
-<!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
-<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
-<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+@include('admin.inc.inc_foot')
 
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
-<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+<script type="text/javascript" src="{{URL::asset('admin/lib/My97DatePicker/4.8/WdatePicker.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('admin/lib/datatables/1.10.0/jquery.dataTables.min.js')}}"></script>
+<script type="text/javascript" src="{{URL::asset('admin/lib/laypage/1.2/laypage.js')}}"></script>
 <script type="text/javascript">
 $('.table-sort').dataTable({
 	"aaSorting": [[ 1, "desc" ]],//默认第几个排序

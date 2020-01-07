@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Model\Admin\Modules;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,7 +15,23 @@ class ModulesController extends Controller
      */
     public function index()
     {
-        return view('admin.system.modules');
+        // $page = $request->input('page');
+        // $modules = Modules:: where()
+        $modules = Modules::orderBy('sort_id','desc')->get();
+//        return $modules;
+        // dd($modules);
+        return view('admin.system.modules',['modules'=>$modules]);
+    }
+
+    /**
+     * Display a paginate controller
+     *
+     * @return a result of JsonType
+     */
+    public function apiPaginate()
+    {
+        $modules = Modules::orderBy('sort_id','desc')->paginate(10);
+        return $modules;
     }
 
     /**
@@ -24,7 +41,7 @@ class ModulesController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.system.modules_create');
     }
 
     /**
@@ -35,7 +52,8 @@ class ModulesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->input();
+        dd($data);
     }
 
     /**

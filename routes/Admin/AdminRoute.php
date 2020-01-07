@@ -30,8 +30,19 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     //我的桌面
     Route::get('/welcome.html','WelcomeController@index');
     //模块管理
-    Route::get('/modules.html','ModulesController@index');
+    //分页接口
+    Route::get('/modules/pages','ModulesController@apiPaginate');
+    //模块资源
+    Route::resources([
+        '/modules'=>'ModulesController'
+    ]);
+
     //栏目管理
-    Route::get('column.html','ColumnController@index');
+    //分页接口
+    Route::get('/columns/pages','ColumnsController@apiPaginate');
+    //栏目资源
+    Route::resources([
+        'columns'=>'ColumnsController'
+    ]);
 });
 

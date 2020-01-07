@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Model\Admin\Columns;
+use App\Model\Admin\Modules;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ColumnController extends Controller
+class ColumnsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +16,9 @@ class ColumnController extends Controller
      */
     public function index()
     {
-        return view('admin.system.column');
+        $columns = Columns::orderBy('sort_id','desc')->get();
+
+        return view('admin.system.columns',['columns'=>$columns]);
     }
 
     /**
@@ -24,7 +28,19 @@ class ColumnController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.system.columns_create');
+    }
+
+
+    /**
+     * Display a paginate controller
+     *
+     * @return a result of JsonType
+     */
+    public function apiPaginate()
+    {
+        $columns = Columns::orderBy('sort_id','desc')->paginate(10);
+        return $columns;
     }
 
     /**
