@@ -11,10 +11,10 @@
 
 	<div class="cl pd-5 bg-1 bk-gray mt-20">
 		<span class="l">
-		<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+		<a href="javascript:;" onclick="datadel();" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 		<a class="btn btn-primary radius" onclick="system_category_add('添加模块','{{URL("admin/modules/create")}}')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加模块</a>
 		</span>
-		<span class="r">共有数据：<strong> {{count($modules)}} </strong> 条</span>
+		<span class="r">共有数据：<strong> {{count($datas)}} </strong> 条</span>
 	</div>
 	<div class="mt-20">
 		<table class="table table-border table-bordered table-hover table-bg table-sort">
@@ -28,15 +28,15 @@
 				</tr>
 			</thead>
 			<tbody>
-			@foreach( $modules as $k => $v )
+			@foreach( $datas as $k => $v )
 				<tr class="text-c">
-					<td><input type="checkbox" name="" value="{{$v}}"></td>
+					<td><input type="checkbox" name="id" value="{{$v->id}}"></td>
 					<td>{{$v->id}}</td>
 					<td>{{$v->sort_id}}</td>
 					<td class="text-l">{{$v->title}}</td>
 					<td class="f-14">
                         <a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','{{URL('admin/modules/'.$v->id.'/edit')}}',{{$v->id}},'700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-						<a title="删除" href="javascript:;" onclick="system_category_del(this,{{URL('admin/modules/'.$v->id.'/edit')}})" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
+						<a title="删除" href="javascript:;" onclick="system_category_del(this,'{{URL('admin/modules/'.$v->id)}}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
                         <a class="btn-refresh" style="display: none;" href="javascript:;" onclick="javascript:location.replace(location.href);" title="刷新" ></a>
 
                     </td>
@@ -75,20 +75,47 @@
     }
     /*系统-栏目-删除*/
     function system_category_del(obj,uri){
-        layer.confirm('确认要删除吗？',function(index){
+        layer.confirm(
+            '确认要删除吗？',
+            {icon: 3, title:'提示'},
+            function(index){
+
             $.ajax({
-                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                type: 'DELETE',
                 url: uri,
                 dataType: 'json',
                 success: function(data){
-                    $(obj).parents("tr").remove();
-                    layer.msg('已删除!',{icon:1,time:1000});
+                    if( data.sta )
+                    {
+                        // $(obj).parents("tr").remove();
+
+                        layer.msg('已删除!',{icon:1,time:1000});
+                        setTimeout(function(){location.reload();},1000);
+                    }else{
+                        layer.msg(data.msg);
+                    }
+
                 },
                 error:function(data) {
-                    console.log(data.msg);
+                    console.log(data);
                 },
             });
+            layer.close(index);
         });
+    }
+    /*
+    *批量删除
+     */
+    function datadel()
+    {
+        let checkID = new Array();
+        $("input[name='id']:checked").each(function(i){//把所有被选中的复选框的值存入数组
+            checkID[i] =$(this).val();
+        });
+        console.log(checkID);
     }
 </script>
 </body>

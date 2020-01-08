@@ -2,7 +2,7 @@
 <body>
 <div class="page-container">
 	<form action="{{URL('admin/modules')}}" method="post" class="form form-horizontal" id="form-category-add">
-        <input type="hidden" name="id" value="{{$modules?$modules->id:''}}">
+        <input type="hidden" name="id" value="{{$datas?$datas->id:''}}">
         @csrf
 		<div id="tab-category" class="HuiTab">
 			<div class="tabBar cl">
@@ -12,7 +12,7 @@
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-3">名称：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="{{$modules?$modules->title:''}}" placeholder="" id="" name="title">
+						<input type="text" class="input-text" value="{{$datas?$datas->title:''}}" placeholder="" id="" name="title">
 					</div>
 					<div class="col-3">
 					</div>
@@ -20,7 +20,7 @@
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-3">控制器：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="{{$modules?$modules->controller:''}}" placeholder="请先添加控制器和路由" id="" name="controller">
+						<input type="text" class="input-text" value="{{$datas?$datas->controller:''}}" placeholder="请先添加控制器和路由" id="" name="controller">
 					</div>
 					<div class="col-3">
 					</div>
@@ -64,8 +64,17 @@ $(function(){
 			var index = parent.layer.getFrameIndex(window.name);
 			// parent.$('.btn-refresh').click();
             // parent.location.reload();
+            setTimeout(function(){
+                parent.location.reload();
+                }
+                , 1000
+            );
+            setTimeout(function(){
+                parent.layer.close(index);
+            }
+                , 1000
+            );
 
-            // parent.layer.close(index);
 		}
 	});
 });
