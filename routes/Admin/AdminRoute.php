@@ -1,16 +1,6 @@
 <?php
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
-    Route::get('/aaa',function(){
-        return ['a','b','c'];
-    });
 
-
-    Route::get('/user',function (){
-        $user = DB::table('users')->paginate(5)->links();
-    //    $user = $user->appends(['sort' => 'notes']);
-        return $user;
-
-    });
     /*
      *登录路由
      */
@@ -22,8 +12,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('/logout','EntryController@logout');
     //表单提交
     Route::post('/login','EntryController@login');
-
-
+    //验证是否登录
+    Route::post('/check','EntryController@checkLogin');
+    
     /*
      *后台路由
      */

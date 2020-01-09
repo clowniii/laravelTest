@@ -232,5 +232,38 @@
         layer_show(title,url,w,h);
     }
 
+    /*
+    *验证是否已退出登录
+     */
+    function check()
+    {
+        $.ajax({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            type: 'post',
+            url: '{{URL('admin/check')}}',
+            dataType: 'json',
+            success: function(data){
+                if( data.sta )
+                {
+
+                    setTimeout(function(){
+                        check();
+                    },10000);
+                }else{
+                    layer.msg(data);
+                    location.reload();
+                }
+
+            },
+            error:function(data) {
+                location.reload();
+            },
+        });
+    }
+    $(function(){
+        check();
+    });
 
 </script>

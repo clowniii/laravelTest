@@ -62,18 +62,18 @@ $(function(){
 		submitHandler:function(form){
 			$(form).ajaxSubmit();
 			var index = parent.layer.getFrameIndex(window.name);
-			// parent.$('.btn-refresh').click();
+			parent.$('.btn-refresh').click();
             // parent.location.reload();
-            setTimeout(function(){
-                parent.location.reload();
-                }
-                , 1000
-            );
-            setTimeout(function(){
-                parent.layer.close(index);
-            }
-                , 1000
-            );
+            // setTimeout(function(){
+            //     parent.location.reload();
+            //     }
+            //     , 1000
+            // );
+            // setTimeout(function(){
+            //     parent.layer.close(index);
+            // }
+            //     , 1000
+            // );
 
 		}
 	});

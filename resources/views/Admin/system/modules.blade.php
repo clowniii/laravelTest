@@ -38,9 +38,7 @@
                         <a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','{{URL('admin/modules/'.$v->id.'/edit')}}',{{$v->id}},'700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
 						<a title="删除" href="javascript:;" onclick="system_category_del(this,'{{URL('admin/modules/'.$v->id)}}')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>
                         <a class="btn-refresh" style="display: none;" href="javascript:;" onclick="javascript:location.replace(location.href);" title="刷新" ></a>
-
                     </td>
-
 				</tr>
                 @endforeach
 			</tbody>
@@ -111,11 +109,35 @@
      */
     function datadel()
     {
-        let checkID = new Array();
+        let checkID = [];
         $("input[name='id']:checked").each(function(i){//把所有被选中的复选框的值存入数组
             checkID[i] =$(this).val();
         });
-        console.log(checkID);
+        if( checkID.length  )
+        {
+            layer.confirm('确定要删除ID为：'+checkID.join('、')+'的模块吗？',{icon:3,title:'提示'},function(index){
+                let urls = [];
+                for( let i in checkID )
+                {
+                    uri = window.location.href+'/'+checkID[i];
+                    $.ajax({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        type: 'DELETE',
+                        url: uri,
+                        dataType: 'json',
+                    });
+
+                }
+                layer.msg('已删除!',{icon:1,time:1000});
+                setTimeout(function(){location.reload();},1000);
+
+            });
+        }else{
+            layer.alert('请勾选想删除的模块');
+        }
+
     }
 </script>
 </body>

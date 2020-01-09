@@ -39,4 +39,16 @@ class EntryController extends CurdController
         Auth::guard('admin')->logout();
         return redirect('admin/login');
     }
+    public function checkLogin()
+    {
+        if( Auth::guard('admin')->check())
+        {
+            $data['sta'] = '1';
+            $data['msg'] = 'isLogin';
+        }else{
+            $data['sta'] = 0;
+            $data['msg'] = 'logout';
+        }
+        return $data;
+    }
 }
