@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Admin\Core\CurdController;
 use App\Model\Admin\Modules;
 
 class ModulesController extends CurdController

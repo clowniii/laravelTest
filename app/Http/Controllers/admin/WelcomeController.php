@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Admin\Core\CurdController;
 
-use App\Http\Controllers\Controller;
 
 
 class WelcomeController extends CurdController
