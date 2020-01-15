@@ -14,7 +14,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::post('/login','EntryController@login');
     //验证是否登录
     Route::post('/check','EntryController@checkLogin');
-    
+
     /*
      *后台路由
      */
@@ -34,6 +34,14 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     //栏目资源
     Route::resources([
         'columns'=>'ColumnsController'
+    ]);
+
+    //分类管理
+    //分页接口
+    Route::get('/coltypes/pages','ColtypesController@apiPaginate');
+    //分类资源
+    Route::resources([
+        'coltypes'=> 'ColtypesController'
     ]);
 });
 

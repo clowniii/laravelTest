@@ -10,77 +10,74 @@
 				<span>SEO</span>
 			</div>
 			<div class="tabCon">
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-3">栏目ID：</label>
-					<div class="formControls col-xs-8 col-sm-9">11230</div>
-				</div>
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-3">
-						<span class="c-red">*</span>
-						上级栏目：</label>
-					<div class="formControls col-xs-8 col-sm-9">
-						<span class="select-box">
-						<select class="select" id="sel_Sub" name="sel_Sub" onchange="SetSubID(this);">
-							<option value="0">顶级分类</option>
-							<option value="10">分类一级</option>
-							<option value="101">&nbsp;&nbsp;├ 分类二级</option>
-							<option value="102">&nbsp;&nbsp;├ 分类二级</option>
-							<option value="20">分类一级</option>
-							<option value="200">&nbsp;&nbsp;├ 分类二级</option>
-						</select>
-						</span>
-					</div>
-					<div class="col-3">
-					</div>
-				</div>
+{{--				<div class="row cl">--}}
+{{--					<label class="form-label col-xs-4 col-sm-3">栏目ID：</label>--}}
+{{--					<div class="formControls col-xs-8 col-sm-9">11230</div>--}}
+{{--				</div>--}}
+
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-3">
 						<span class="c-red">*</span>
 						分类名称：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="" placeholder="" id="" name="">
+						<input type="text" class="input-text" value="" placeholder="" id="" name="title">
 					</div>
 					<div class="col-3">
 					</div>
 				</div>
 				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-3">别名：</label>
+					<label class="form-label col-xs-4 col-sm-3">唯一标识：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="" placeholder="" id="" name="">
+						<input type="text" class="input-text" value="" placeholder="" id="" name="identify">
 					</div>
 					<div class="col-3">
 					</div>
 				</div>
-				<div class="row cl">
-					<label class="form-label col-xs-4 col-sm-3">目录：</label>
-					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="" placeholder="" id="" name="">
-					</div>
-					<div class="col-3">
-					</div>
-				</div>
+                <div class="row cl">
+                    <label class="form-label col-xs-4 col-sm-3">
+                        <span class="c-red">*</span>
+                        父级栏目：</label>
+                    <div class="formControls col-xs-8 col-sm-9">
+						<span class="select-box">
+						<select class="select" id="parent_id" name="parent_id" onchange="SetSubID(this);">
+							<option value="0">顶级分类</option>
+                            @foreach( $colDatas as $k => $v )
+                                <option value="{{$v['id']}}">{{$v['title']}}</option>
+                                @if( isset($v['son']))
+                                    @foreach( $v['son'] as $kk => $vv )
+                                        <option value="{{$vv['id']}}">|->{{$vv['title']}}</option>
+                                    @endforeach
+                                @endif
+                            @endforeach
+
+						</select>
+						</span>
+                    </div>
+                    <div class="col-3">
+                    </div>
+                </div>
+
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-3">内容类型：</label>
 					<div class="formControls col-xs-8 col-sm-9">
 						<span class="select-box">
-						<select name="" class="select">
-							<option value="1">文章</option>
-							<option value="2">图片</option>
-							<option value="3">商品</option>
-							<option value="4">视频</option>
-							<option value="5">专题</option>
-							<option value="6">链接</option>
+						<select name="mid" class="select">
+                            @foreach( $modulesDatas as $k => $v )
+							<option value="{{$v->id}}">{{$v->title}}</option>
+                            @endforeach
+
 						</select>
 						</span>
 					</div>
 					<div class="col-3">
 					</div>
 				</div>
+
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-3">是否生成静态html：</label>
 					<div class="formControls col-xs-8 col-sm-9 skin-minimal">
 						<div class="check-box">
-							<input type="checkbox" id="checkbox-pinglun">
+							<input type="checkbox" id="checkbox-pinglun" name="status">
 							<label for="checkbox-pinglun">&nbsp;</label>
 						</div>
 					</div>

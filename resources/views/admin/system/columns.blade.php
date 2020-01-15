@@ -26,35 +26,44 @@
 					<th width="25"><input type="checkbox" name="" value=""></th>
 					<th width="80">ID</th>
 					<th width="80">排序</th>
-					<th>栏目名称</th>
+                    <th>栏目名称</th>
+                    <th width="100">栏目分类</th>
+                    <th width="100">发布状态</th>
 					<th width="100">操作</th>
 				</tr>
 			</thead>
 			<tbody>
+            @foreach( $datas as $k => $v )
 				<tr class="text-c">
-					<td><input type="checkbox" name="" value=""></td>
-					<td>1</td>
-					<td>1</td>
-					<td class="text-l">一级栏目</td>
-					<td class="f-14"><a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','system-category-add.html','1','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+					<td><input type="checkbox" name="id" value="{{$v['id']}}"></td>
+					<td>{{$v['id']}}</td>
+					<td>{{$v['sort_id']}}</td>
+					<td class="text-l">{{$v['title']}}</td>
+                    <td class="td-status"><span class="label label-success radius"><a href="#" style="color: white;">已存在</a></span></td>
+                    <td class="td-status"><span class="label label-success radius">已发布</span></td>
+					<td class="f-14">
+                        <a  onClick="product_stop(this,'10001')" href="javascript:;" title="下架" style="text-decoration:none"><i class="Hui-iconfont">&#xe6de;</i></a>
+                        <a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','system-category-add.html','1','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
 						<a title="删除" href="javascript:;" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 				</tr>
-				<tr class="text-c">
-					<td><input type="checkbox" name="" value=""></td>
-					<td>2</td>
-					<td>2</td>
-					<td class="text-l">&nbsp;&nbsp;├&nbsp;二级栏目</td>
-					<td class="f-14"><a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','system-category-add.html','2','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-						<a title="删除" href="javascript:;" onclick="system_category_del(this,'2')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
-				<tr class="text-c">
-					<td><input type="checkbox" name="" value=""></td>
-					<td>3</td>
-					<td>3</td>
-					<td class="text-l">&nbsp;&nbsp;├&nbsp;二级栏目</td>
-					<td class="f-14"><a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','system-category-add.html','3','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
-						<a title="删除" href="javascript:;" onclick="system_category_del(this,'3')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
-				</tr>
+                @if(isset($v['son']))
+                    @foreach($v['son'] as $kk => $vv )
+                        <tr class="text-c">
+                            <td><input type="checkbox" name="id" value="{{$vv['id']}}"></td>
+                            <td>{{$vv['id']}}</td>
+                            <td>{{$vv['sort_id']}}</td>
+                            <td class="text-l">|-{{$vv['title']}}</td>
+                            <td class="td-status"><span class="label label-success radius"><a href="#" style="color: white;">已存在</a></span></td>
+                            <td class="td-status"><span class="label label-success radius">已发布</span></td>
+                            <td class="f-14">
+                                <a  onClick="product_stop(this,'10001')" href="javascript:;" title="下架" style="text-decoration:none"><i class="Hui-iconfont">&#xe6de;</i></a>
+                                    <a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','system-category-add.html','1','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                                <a title="删除" href="javascript:;" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+                        </tr>
+                    @endforeach
+                @endif
+                @endforeach
+
 			</tbody>
 		</table>
 	</div>

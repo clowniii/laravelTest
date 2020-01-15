@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Core\CurdController;
 use Illuminate\Http\Request;
 use Auth;
 
