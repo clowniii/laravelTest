@@ -39,11 +39,11 @@
 					<td>{{$v['id']}}</td>
 					<td>{{$v['sort_id']}}</td>
 					<td class="text-l">{{$v['title']}}</td>
-                    <td class="td-status"><span class="label label-success radius"><a href="#" style="color: white;">已存在</a></span></td>
+                    <td class="td-status"><span class="label label-success radius"><a href="{{URL('admin/coltypes')}}" style="color: white;" onclick="coltypes_index('分类列表','{{URL('admin/coltypes/'.$v['id'])}}','{{$v['id']}}','','');return false;">{{$v['ctypes']}}</a></span></td>
                     <td class="td-status"><span class="label label-success radius">已发布</span></td>
 					<td class="f-14">
                         <a  onClick="product_stop(this,'10001')" href="javascript:;" title="下架" style="text-decoration:none"><i class="Hui-iconfont">&#xe6de;</i></a>
-                        <a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','system-category-add.html','1','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                        <a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','{{URL('admin/columns/'.$v['id'].'/edit')}}','{{$v['id']}}','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
 						<a title="删除" href="javascript:;" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
 				</tr>
                 @if(isset($v['son']))
@@ -53,11 +53,11 @@
                             <td>{{$vv['id']}}</td>
                             <td>{{$vv['sort_id']}}</td>
                             <td class="text-l">|-{{$vv['title']}}</td>
-                            <td class="td-status"><span class="label label-success radius"><a href="#" style="color: white;">已存在</a></span></td>
+                            <td class="td-status"><span class="label label-success radius"><a href="{{URL('admin/coltypes')}}" style="color: white;" onclick="coltypes_index('分类列表','{{URL('admin/coltypes/'.$vv['id'])}}','{{$v['id']}}','','');return false;">{{$vv['ctypes']}}</a></span></td>
                             <td class="td-status"><span class="label label-success radius">已发布</span></td>
                             <td class="f-14">
                                 <a  onClick="product_stop(this,'10001')" href="javascript:;" title="下架" style="text-decoration:none"><i class="Hui-iconfont">&#xe6de;</i></a>
-                                    <a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','system-category-add.html','1','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
+                                    <a title="编辑" href="javascript:;" onclick="system_category_edit('栏目编辑','{{URL('admin/columns/'.$vv['id'].'/edit')}}','{{$vv['id']}}','700','480')" style="text-decoration:none"><i class="Hui-iconfont">&#xe6df;</i></a>
                                 <a title="删除" href="javascript:;" onclick="system_category_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
                         </tr>
                     @endforeach
@@ -75,14 +75,14 @@
 <script type="text/javascript" src="{{URL::asset('admin/lib/datatables/1.10.0/jquery.dataTables.min.js')}}"></script>
 <script type="text/javascript" src="{{URL::asset('admin/lib/laypage/1.2/laypage.js')}}"></script>
 <script type="text/javascript">
-$('.table-sort').dataTable({
-	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
-	"bStateSave": true,//状态保存
-	"aoColumnDefs": [
-	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
-	  {"orderable":false,"aTargets":[0,4]}// 制定列不参与排序
-	]
-});
+// $('.table-sort').dataTable({
+// 	"aaSorting": [[ 2, "asc" ]],//默认第几个排序
+// 	"bStateSave": true,//状态保存
+// 	"aoColumnDefs": [
+// 	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+// 	  {"orderable":false,"aTargets":[0,4]}// 制定列不参与排序
+// 	]
+// });
 /*系统-栏目-添加*/
 function system_category_add(title,url,w,h){
 	layer_show(title,url,w,h);
@@ -107,6 +107,11 @@ function system_category_del(obj,id){
 			},
 		});
 	});
+}
+/*分类*/
+function coltypes_index(title,url,cid,w=1000,h=600){
+
+    layer_show(title,url+'?cid='+cid,w,h);
 }
 </script>
 </body>

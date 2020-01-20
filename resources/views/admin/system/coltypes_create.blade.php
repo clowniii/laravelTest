@@ -1,18 +1,18 @@
-@include('admin.inc.inc_head', ['title' => '栏目添加'])
+@include('admin.inc.inc_head', ['title' => '分类添加'])
 <body>
 <div class="page-container">
 	<form action="{{URL('admin/modules')}}" method="post" class="form form-horizontal" id="form-category-add">
-        <input type="hidden" name="id" value="{{isset($datas)?$datas->id:''}}">
+        <input type="hidden" name="id" value="{{$datas?$datas->id:''}}">
         @csrf
 		<div id="tab-category" class="HuiTab">
 			<div class="tabBar cl">
-				<span>添加模块</span>
+				<span>添加分类</span>
 			</div>
 			<div class="tabCon">
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-3">名称：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="{{isset($datas)?$datas->title:''}}" placeholder="" id="" name="title">
+						<input type="text" class="input-text" value="{{$datas?$datas->title:''}}" placeholder="" id="" name="title">
 					</div>
 					<div class="col-3">
 					</div>
@@ -20,7 +20,7 @@
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-3">控制器：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="{{isset($datas)?$datas->controller:''}}" placeholder="请先添加控制器和路由" id="" name="controller">
+						<input type="text" class="input-text" value="{{$datas?$datas->controller:''}}" placeholder="请先添加控制器和路由" id="" name="controller">
 					</div>
 					<div class="col-3">
 					</div>

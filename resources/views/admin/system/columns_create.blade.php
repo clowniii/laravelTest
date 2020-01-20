@@ -20,7 +20,8 @@
 						<span class="c-red">*</span>
 						分类名称：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="" placeholder="" id="" name="title">
+                        <input type="hidden" name="id" value="{{isset($datas)?$datas->id:''}}">
+						<input type="text" class="input-text" value="{{isset($datas)?$datas->title:''}}" placeholder="" id="" name="title">
 					</div>
 					<div class="col-3">
 					</div>
@@ -28,7 +29,7 @@
 				<div class="row cl">
 					<label class="form-label col-xs-4 col-sm-3">唯一标识：</label>
 					<div class="formControls col-xs-8 col-sm-9">
-						<input type="text" class="input-text" value="" placeholder="" id="" name="identify">
+						<input type="text" class="input-text" value="{{isset($datas)?$datas->identify:''}}" placeholder="" id="" name="identify">
 					</div>
 					<div class="col-3">
 					</div>
@@ -42,10 +43,10 @@
 						<select class="select" id="parent_id" name="parent_id" onchange="SetSubID(this);">
 							<option value="0">顶级分类</option>
                             @foreach( $colDatas as $k => $v )
-                                <option value="{{$v['id']}}">{{$v['title']}}</option>
+                                <option value="{{$v['id']}}" @if($v['id'] == $datas->parent_id){{'selected'}}@endif>{{$v['title']}}</option>
                                 @if( isset($v['son']))
                                     @foreach( $v['son'] as $kk => $vv )
-                                        <option value="{{$vv['id']}}">|->{{$vv['title']}}</option>
+                                        <option value="{{$vv['id']}}" @if($vv['id'] == $datas->parent_id){{'selected'}}@endif>|->{{$vv['title']}}</option>
                                     @endforeach
                                 @endif
                             @endforeach
@@ -63,7 +64,7 @@
 						<span class="select-box">
 						<select name="mid" class="select">
                             @foreach( $modulesDatas as $k => $v )
-							<option value="{{$v->id}}">{{$v->title}}</option>
+							<option value="{{$v->id}}" @if($v->id == $datas->mid){{'selected'}}@endif>{{$v->title}}</option>
                             @endforeach
 
 						</select>

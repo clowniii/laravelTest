@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Admin\Core\CurdController;
+use App\Model\Admin\Coltypes;
 use App\Model\Admin\Columns;
 use App\Model\Admin\Modules;
 use Illuminate\Http\Request;
@@ -24,7 +25,16 @@ class ColumnsController extends CurdController
      */
     public function index()
     {
-        $arr = $this->model->orderBy('sort_id','desc')->get()->toArray();
+        $arr = $this->model->orderBy('sort_id','asc')->get()->toArray();
+        foreach($arr as $k => $v )
+        {
+            if(Coltypes::where('cid',$v['id'])->exists())
+            {
+                $arr[$k]['ctypes'] = '已存在';
+            }else{
+                $arr[$k]['ctypes'] = '未添加';
+            }
+        }
         $datas = $this->getTree($arr);
 
 
@@ -39,9 +49,26 @@ class ColumnsController extends CurdController
     public function create()
     {
         $datas= [];
-        $colDatas = $this->getTree($this->model->orderBy('sort_id','desc')->get()->toArray());
+        $colDatas = $this->getTree($this->model->orderBy('sort_id','asc')->get()->toArray());
         $modulesDatas = Modules::orderBy('sort_id','desc')->get();
         return view($this->view.'_create',['datas' => $datas,'modulesDatas' => $modulesDatas,'colDatas' => $colDatas]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $datas = $this->model->where('id',$id)->first();
+        $colDatas = $this->getTree($this->model->orderBy('sort_id','asc')->get()->toArray());
+        $modulesDatas = Modules::orderBy('sort_id','desc')->get();
+
+
+        return view($this->view.'_create',['datas'=>$datas,'colDatas'=>$colDatas,'modulesDatas'=>$modulesDatas]);
+
     }
 
     /**
@@ -68,21 +95,4 @@ class ColumnsController extends CurdController
 //        dd($res);
     }
 
-    private function getTree($data)
-    {
-        $items = array();
-
-        foreach($data as $v){
-            $items[$v['id']] = $v;
-        }
-        $tree = array();
-        foreach($items as $k => $item){
-            if(isset($items[$item['parent_id']])){
-                $items[$item['parent_id']]['son'][] = &$items[$k];
-            }else{
-                $tree[] = &$items[$k];
-            }
-        }
-        return $tree;
-    }
 }

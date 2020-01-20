@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Model\Admin;
+namespace App\Model\Admin\Core;
 
 
 class CurdModel extends BaseModel

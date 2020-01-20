@@ -86,6 +86,7 @@ class CurdController extends BaseController
     public function edit($id)
     {
         $datas = $this->model->where('id',$id)->first();
+        dd(request()->route()->getAction());
 
         return view($this->view.'_create',['datas'=>$datas]);
 
